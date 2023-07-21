@@ -3,6 +3,9 @@ package com.kelton.crjateste.model;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "tarefas")
@@ -16,7 +19,7 @@ public class Tarefa {
 
     private String descricao;
 
-    private Instant prazo;
+    private LocalDateTime prazo;
 
     private Integer duracao;
 
@@ -32,7 +35,7 @@ public class Tarefa {
 
     public Tarefa() {}
 
-    public Tarefa(Long id, String titulo, String descricao, Instant prazo, Departamento departamento, Integer duracao, Boolean finalizado, Pessoa pessoa) {
+    public Tarefa(Long id, String titulo, String descricao, LocalDateTime prazo, Departamento departamento, Integer duracao, Boolean finalizado, Pessoa pessoa) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -67,11 +70,11 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public Instant getPrazo() {
+    public LocalDateTime getPrazo() {
         return prazo;
     }
 
-    public void setPrazo(Instant prazo) {
+    public void setPrazo(LocalDateTime prazo) {
         this.prazo = prazo;
     }
 

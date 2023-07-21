@@ -5,6 +5,7 @@ import com.kelton.crjateste.dto.PessoaDTO;
 import com.kelton.crjateste.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,28 +13,28 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
 
     @Query(value = """
-            SELECT p.id as id, d.nome as departamento, SUM(t.duracao) as totalHorasTarefas
+            SELECT p.id as id, d.titulo as departamento, SUM(t.duracao) as totalHorasTarefas
             FROM pessoas p
             LEFT JOIN departamentos d
             ON p.id_departamento = d.id
             LEFT JOIN tarefas t
             ON t.id_pessoa = p.id
-            GROUP BY p.id, d.nome
+            GROUP BY p.id, d.titulo
             ORDER BY p.id
             """, nativeQuery = true)
     List<PessoaDTO> listarPessoas();
 
     @Query(value = """
-            SELECT p.id as id, d.nome as departamento, AVG(t.duracao) as totalHorasTarefas
+            SELECT p.id as id, d.titulo as departamento, AVG(t.duracao) as totalHorasTarefas
             FROM pessoas p
             LEFT JOIN departamentos d
             ON p.id_departamento = d.id
             LEFT JOIN tarefas t
             ON t.id_pessoa = p.id
-            WHERE d.nome LIKE '%teste%'
-            AND t.prazo BETWEEN '2007-02-07' AND '2007-02-15'
-            GROUP BY p.id, d.nome
+            WHERE p.nome LIKE %:#{#buscarPessoaDTO.nome}%
+            AND t.prazo BETWEEN :#{#buscarPessoaDTO.dataInicial} AND :#{#buscarPessoaDTO.dataFinal}
+            GROUP BY p.id, d.titulo
             ORDER BY p.id
             """, nativeQuery = true)
-    List<PessoaDTO> listarPessoasGastos(BuscarPessoaDTO buscarPessoaDTO);
+    List<PessoaDTO> listarPessoasGastos(@Param("buscarPessoaDTO") BuscarPessoaDTO buscarPessoaDTO);
 }

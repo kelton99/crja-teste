@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,8 +30,7 @@ class PessoaRepositoryTest {
     }
 
     @AfterEach
-    void tearDown() {
-    }
+    void tearDown() { }
 
     @Test
     void listarPessoas() {
@@ -74,8 +71,8 @@ class PessoaRepositoryTest {
 
         var pessoa2 = new Pessoa();
 
-        pessoa1.setNome("Maria");
-        pessoa1.setDepartamento(departamento);
+        pessoa2.setNome("Maria");
+        pessoa2.setDepartamento(departamento);
 
         pessoa1 = this.pessoaRepository.save(pessoa1);
         pessoa2 = this.pessoaRepository.save(pessoa2);
@@ -99,13 +96,12 @@ class PessoaRepositoryTest {
         tarefa2.setPessoa(pessoa2);
         tarefa2.setDepartamento(departamento);
 
-
         var tarefa3 = new Tarefa();
         tarefa3.setTitulo("Refatorar");
         tarefa3.setDescricao("Refatorar serviço de cadastro de pessoas e tarefas");
         tarefa3.setDuracao(5);
         tarefa3.setFinalizado(false);
-        tarefa2.setPrazo(LocalDateTime.of(2023, 7, 26, 0, 0, 0));
+        tarefa3.setPrazo(LocalDateTime.of(2023, 7, 26, 0, 0, 0));
         tarefa3.setPessoa(pessoa1);
         tarefa3.setDepartamento(departamento);
 
@@ -113,16 +109,12 @@ class PessoaRepositoryTest {
         tarefaRepository.save(tarefa2);
         tarefaRepository.save(tarefa3);
 
-        final var tarefas = this.tarefaRepository.findAll();
-        System.out.println(tarefas);
-        assertThat(tarefas).isNotEmpty();
-
         final var buscaInput = new BuscarPessoaDTO("João", LocalDateTime.of(2023, 7, 20, 0, 0, 0), LocalDateTime.of(2023, 7, 27, 0, 0, 0));
-        final var pessoas = this.pessoaRepository.listarPessoasGastos(buscaInput);
 
+        final var pessoas = this.pessoaRepository.listarPessoasGastos(buscaInput);
         assertThat(pessoas).isNotEmpty();
         assertThat(pessoas.size()).isEqualTo(1);
-        assertThat(pessoas.get(0).getTotalHorasTarefas()).isEqualTo(10);
+        assertThat(pessoas.get(0).getMediaHorasTarefas()).isEqualTo(10);
 
     }
 }

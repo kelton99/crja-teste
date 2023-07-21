@@ -5,5 +5,5 @@ public interface PessoaDTO {
 
     String getDepartamento();
 
-    Integer getTotalHorasTarefas();
+    Integer getMediaHorasTarefas();
 }

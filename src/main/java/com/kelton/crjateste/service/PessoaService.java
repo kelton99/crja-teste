@@ -36,8 +36,8 @@ public class PessoaService {
         final var pessoa = this.pessoaRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Pessoa não encontrada"));
 
-        pessoa.setNome(pessoa.getNome());
-        pessoa.setDepartamento(pessoa.getDepartamento());
+        pessoa.setNome(novaPessoa.getNome());
+        pessoa.setDepartamento(novaPessoa.getDepartamento());
         return this.pessoaRepository.save(pessoa);
     }
 

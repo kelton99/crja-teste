@@ -25,7 +25,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     List<PessoaDTO> listarPessoas();
 
     @Query(value = """
-            SELECT p.id as id, d.titulo as departamento, AVG(t.duracao) as totalHorasTarefas
+            SELECT p.id as id, d.titulo as departamento, AVG(t.duracao) as mediaHorasTarefas
             FROM pessoas p
             LEFT JOIN departamentos d
             ON p.id_departamento = d.id

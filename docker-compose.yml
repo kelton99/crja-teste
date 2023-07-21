@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: crja_db
     image: postgres
     restart: always
     ports:
@@ -7,4 +8,4 @@ services:
     environment:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: crja-teste
+      POSTGRES_DB: crja

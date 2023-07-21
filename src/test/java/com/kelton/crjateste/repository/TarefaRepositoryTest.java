@@ -40,14 +40,14 @@ class TarefaRepositoryTest {
         Tarefa tarefa2 = new Tarefa();
         tarefa2.setTitulo("Teste2");
         tarefa2.setDescricao("Tarefa2 para testes");
-        tarefa2.setPrazo(LocalDateTime.MIN);
+        tarefa2.setPrazo(now.minusDays(10));
         tarefa2.setDuracao(15);
         tarefa2.setFinalizado(false);
 
         Tarefa tarefa3 = new Tarefa();
         tarefa3.setTitulo("Teste3");
         tarefa3.setDescricao("Tarefa3 para testes");
-        tarefa3.setPrazo(LocalDateTime.MIN);
+        tarefa3.setPrazo(now.minusDays(10));
         tarefa3.setDuracao(15);
         tarefa3.setFinalizado(false);
 
@@ -55,7 +55,7 @@ class TarefaRepositoryTest {
         Tarefa tarefa4 = new Tarefa();
         tarefa4.setTitulo("Teste4");
         tarefa4.setDescricao("Tarefa4 para testes");
-        tarefa4.setPrazo(LocalDateTime.MIN);
+        tarefa4.setPrazo(now.minusDays(10));
         tarefa4.setDuracao(15);
         tarefa4.setFinalizado(false);
 

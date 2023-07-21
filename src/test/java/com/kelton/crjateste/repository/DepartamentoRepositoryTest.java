@@ -22,6 +22,7 @@ public class DepartamentoRepositoryTest {
         final var departamentos = this.departamentoRepository.listarDepartamentos();
 
         assertThat(departamentos).isNotEmpty();
+        assertThat(departamentos.size()).isEqualTo(1);
     }
 
 }

@@ -1,36 +1,28 @@
-package com.kelton.crjateste.repository;
+package com.kelton.crjateste.service;
 
 import com.kelton.crjateste.model.Tarefa;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
-class TarefaRepositoryTest {
+@SpringBootTest
+public class TarefaServiceTest {
 
     @Autowired
-    private TarefaRepository tarefaRepository;
+    private TarefaService tarefaService;
 
     @BeforeEach
     void setUp() {
-    }
 
-    @AfterEach
-    void tearDown() {
     }
 
     @Test
-    void deveListarTarefasPendentes() {
+    public void deveListarTarefasPendentes() {
 
-        final var tarefas = this.tarefaRepository.listarTarefasPendentes();
+        final var tarefas = this.tarefaService.listarTarefasPendentes();
 
         assertThat(tarefas).isNotEmpty();
         assertThat(tarefas.size()).isEqualTo(3);
@@ -47,4 +39,5 @@ class TarefaRepositoryTest {
         assertThat(naoPossuiPessoa).isEqualTo(true);
 
     }
+
 }

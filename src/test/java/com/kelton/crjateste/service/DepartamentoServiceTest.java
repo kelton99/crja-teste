@@ -1,27 +1,30 @@
 package com.kelton.crjateste.service;
 
-import com.kelton.crjateste.repository.DepartamentoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@ExtendWith(MockitoExtension.class)
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
 public class DepartamentoServiceTest {
 
-    @Mock
-    private DepartamentoRepository departamentoRepository;
+    @Autowired
     private DepartamentoService departamentoService;
 
     @BeforeEach
     void setUp() {
-        departamentoService = new DepartamentoService(departamentoRepository);
+
     }
 
     @Test
     public void deveListarDepartamentos() {
-        this.departamentoService.listarDepartamentos();
+
+        final var departamentos = this.departamentoService.listarDepartamentos();
+
+        assertThat(departamentos).isNotEmpty();
+        assertThat(departamentos.size()).isEqualTo(3);
     }
 
 }

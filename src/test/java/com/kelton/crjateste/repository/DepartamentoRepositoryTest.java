@@ -1,6 +1,5 @@
 package com.kelton.crjateste.repository;
 
-import com.kelton.crjateste.model.Departamento;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,13 +15,10 @@ public class DepartamentoRepositoryTest {
 
     @Test
     public void deveListarDepartamentos() {
-        Departamento departamento = new Departamento(1L, "Juridico");
-
-        this.departamentoRepository.save(departamento);
         final var departamentos = this.departamentoRepository.listarDepartamentos();
 
         assertThat(departamentos).isNotEmpty();
-        assertThat(departamentos.size()).isEqualTo(1);
+        assertThat(departamentos.size()).isEqualTo(3);
     }
 
 }
